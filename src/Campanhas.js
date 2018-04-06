@@ -15,9 +15,9 @@ class Campanhas extends Component {
             asArray: false
         })
     }
-    renderCampanha(campanha) {
+    renderCampanha(key, campanha) {
         return (
-            <section className='page-section'>
+            <section className='page-section' key ={key}>
             <div className='container'>
                 <div className='product-item bg-faded'>
                     <div className='product-item-title d-flex'>
@@ -31,7 +31,7 @@ class Campanhas extends Component {
                     <div className='product-item-description d-flex ml-auto'>
                         <div className='p-5 rounded'>
                             <p className='mb-0'>{campanha.descricao}</p>
-                            { campanha.tipo === 'dinheiro' && <div>
+                            { campanha.tipo === 'doacao' && <div>
                             <div className='progress'>
                                 <div className='progress-bar bg-success' role='progressbar' aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'></div>
                             </div>
@@ -81,7 +81,7 @@ class Campanhas extends Component {
            
               { Object
               .keys(this.state.campanhas)
-              .map(key => this.renderCampanha(this.state.campanhas[key]))
+              .map(key => this.renderCampanha(key, this.state.campanhas[key]))
             }
 
                
