@@ -31,6 +31,7 @@ class Campanhas extends Component {
                     <div className='product-item-description d-flex ml-auto'>
                         <div className='p-5 rounded'>
                             <p className='mb-0'>{campanha.descricao}</p>
+                            { campanha.tipo === 'dinheiro' && <div>
                             <div className='progress'>
                                 <div className='progress-bar bg-success' role='progressbar' aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'></div>
                             </div>
@@ -38,7 +39,13 @@ class Campanhas extends Component {
                             <div>
                                 <button className='btn btn-success'>Contribuir</button>
                             </div>
+                          </div> }
                         </div>
+                        { campanha.tipo === 'produtos'&& <div>
+                      <h4>Como Doar:</h4>
+                      <p>{campanha.comoDoar}</p>    
+
+                        </div> }
                     </div>
                     <div className='ml-auto'>
 
@@ -71,10 +78,10 @@ class Campanhas extends Component {
                         </div>
                     </div>
                 </section>
-
+           
               { Object
               .keys(this.state.campanhas)
-              .map(key => this.renderCampanha(this.state.campanhas(key)))
+              .map(key => this.renderCampanha(this.state.campanhas[key]))
             }
 
                
