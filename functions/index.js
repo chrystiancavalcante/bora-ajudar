@@ -3,8 +3,11 @@ const admin = require('firebase-admin')
 
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const app = express()
 
+
+app.use(cors)
 //admin.inicializeApp(functions.config().firebase)
 admin.inicializeApp
 
@@ -19,25 +22,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoder({ extended: true }))
 
 app.get('/', (req, res) => {
-    admin
-        .database()
-        .ref('/campanhas/' + campanha)
-        .once('value')
-        .then(value => {
-            const campanhaAtual = value.val()
-            const doado = parseFloat(campanhaAtual.doado) + parseFloat(amount)
-            campanhaAtual.doado = doado.toFixed(2)
-            admin
-                .database()
-                .ref('/campanhas/' + campanha)
-                .set(campanhaAtual)
-                .then(value => {
-                    res.send(campanhaAtual)
-                })
-
-        })
-
-    //res.send('BoraAjudar Server')
+   
+    res.send('BoraAjudar Server')
 })
 
 app.post('/donate', (req, res) => {
@@ -48,10 +34,10 @@ app.post('/donate', (req, res) => {
             token: token,
             email: email,
             currency: 'BRL',
-            itemId1: 'idCampanha',
+            itemId1: req.body.campanha,
             itemDescription1: 'Doação',
             itemQuantily: '1',
-            itemAmount1: '2,00'
+            itemAmount1: req.body.valor
         },
         headers: {
             'Content-type': 'application/x-www-urlencoded; charset=UTF-8'

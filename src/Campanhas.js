@@ -10,6 +10,8 @@ class Campanhas extends Component {
             campanhas: {},
             redirectDonate: ''
         }
+
+        this.handleDonate = this.handleDonate.bind(this)
     }
     ComponentDidMount() {
         base.syncState('campanhas', {
@@ -22,7 +24,7 @@ class Campanhas extends Component {
         axios
         .post('/api/donate', {
             campanha: key,
-            valor: 3
+            valor: this.valor.value
         })
         .then(data => {
            window.location = data.data.url
@@ -50,6 +52,15 @@ class Campanhas extends Component {
                             </div>
                             <p>Meta: R$ {campanha.meta} / Atingidos: R$ {campanha.doado}</p>
                             <div>
+                                <select ref={ref => this.valor = ref}>
+                                    <option value="2,00">R$ 2,00</option>
+                                    <option value="5,00">R$ 5,00</option>
+                                    <option value="10,00">R$ 10,00</option>
+                                    <option value="30,00">R$ 30,00</option>
+                                    <option value="50,00">R$ 50,00</option>
+                                    <option value="100,00">R$ 100,00</option>
+                                </select>    
+                                
                                 <button className='btn btn-success' onClick={() => this.handleDonate(key)}>Contribuir</button>
                             </div>
                           </div> }
