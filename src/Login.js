@@ -42,8 +42,8 @@ class Login extends Component {
             return <Redirect to='/admin' />
         }
         return (
-            <div>
-                <input type='email' ref={ref => this.email = ref} />
+            <div className='text-center'>
+                <input type='email' ref={ref => this.email = ref} />&nbsp;
                 <input type='passwd' ref={ref => this.passwd = ref} />
                 {this.state.error && <p>E-mail e/ou senha inválidos.</p>}
                 <button disabled={this.state.isLogging} onClick={this.handleLogin}>

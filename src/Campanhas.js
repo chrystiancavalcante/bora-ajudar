@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import base from './base'
+import axios from 'axios'
 
 class Campanhas extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            campanhas: {}
+            campanhas: {},
+            redirectDonate: ''
         }
     }
     ComponentDidMount() {
@@ -13,6 +16,16 @@ class Campanhas extends Component {
             context: this,
             state: 'campanhas',
             asArray: false
+        })
+    }
+    handleDonate(key) {
+        axios
+        .post('/api/donate', {
+            campanha: key,
+            valor: 3
+        })
+        .then(data => {
+           window.location = data.data.url
         })
     }
     renderCampanha(key, campanha) {
@@ -35,9 +48,9 @@ class Campanhas extends Component {
                             <div className='progress'>
                                 <div className='progress-bar bg-success' role='progressbar' aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'></div>
                             </div>
-                            <p>Meta: R$ 5.000,00 / Atingidos: R$ 2.500,00</p>
+                            <p>Meta: R$ {campanha.meta} / Atingidos: R$ {campanha.doado}</p>
                             <div>
-                                <button className='btn btn-success'>Contribuir</button>
+                                <button className='btn btn-success' onClick={() => this.handleDonate(key)}>Contribuir</button>
                             </div>
                           </div> }
                         </div>
@@ -56,6 +69,7 @@ class Campanhas extends Component {
         )
     }
     render() {
+        
         return (
             <div>
                 <section className='page-section'>
