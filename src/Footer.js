@@ -8,7 +8,7 @@ const Footer = props => {
       <div className='container'>
         <p className='m-0 small'>
           <img src='img/software-do-bem-logo-320x128.png' alt='software-do-bem'/><br />
-          Desenvolvido por Chrystian Cavalcante. Saiba mais.
+          Desenvolvido por Chrystian Cavalcante. 
         </p>
       </div>
     </footer>
