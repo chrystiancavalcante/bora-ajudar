@@ -14,8 +14,8 @@ admin.inicializeApp
 const request = require('request-promise')
 const parse = require('xml2js').parseString
 
-const email = 'chrystiancavalcante@gmail.com'
-const token = 'C10698F02E4645638F287043EC66A6D5'
+const email = ''
+const token = ''
 const checkoutUrl = 'https://ws.pagseguro.uol.com.br/v2/checkout/payment.html?code='
 
 app.use(bodyParser.json())
