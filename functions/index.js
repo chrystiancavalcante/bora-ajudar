@@ -56,7 +56,7 @@ app.post('/donate', (req, res) => {
 
 app.post('/webhook', (req, res) => {
     const notificationCode = req.body.notificationCode
-    const consultaNotificacao = 'https://ws.pagseguro.uol.com.br/v2/checkout/payment.html?code=127273664635363636363DDDFT'
+    const consultaNotificacao = 'https://ws.pagseguro.uol.com.br/v2/checkout/payment.html?code='
     //url de notificação do pagseguro
     Request(consultaNotificacao + notificationCode + '?token=' + token + '&email=' + email)
         .then(notificationXML => {
